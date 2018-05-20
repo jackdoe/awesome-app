@@ -1,4 +1,4 @@
-## when you are sad, just remind yourself you are awesome you feel sad
+## just remind yourself you are awesome you feel sad (or not)
 
 ![sad](./why.jpg)
 
