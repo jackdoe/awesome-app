@@ -1,6 +1,6 @@
 ## when you are sad, just remind yourself you are awesome you feel sad
 
-![sad](./sad.jpg)
+![sad](./why.jpg)
 
 # not any more
 
