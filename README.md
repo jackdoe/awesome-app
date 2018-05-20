@@ -6,7 +6,7 @@
 
 ![awesome](./screenshot.png)
 
-you can get it from the app store at [awesome](https://itunes.apple.com/us/app/be-awesome/id1387288406) when it is approved
+you can get it from the app store at [https://itunes.apple.com/us/app/be-awesome/id1387288406](https://itunes.apple.com/us/app/be-awesome/id1387288406) when it is approved
 
 
 
