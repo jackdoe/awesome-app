@@ -28,7 +28,7 @@ class Circle extends Component {
 		};
 	}
 	animate() {
-		let delta = 100;
+		let delta = 200;
 		Animated.loop(
 			Animated.sequence([
 				Animated.parallel([
