@@ -65,11 +65,11 @@ class Circle extends Component {
         Animated.sequence([
           Animated.timing(this.state.fade, {
             toValue: 0,
-            duration: 100
+            duration: 200
           }),
           Animated.timing(this.state.fade, {
             toValue: 1,
-            duration: 100
+            duration: 200
           })
         ]).start()
       })
@@ -90,7 +90,7 @@ class Circle extends Component {
         inputRange: [
           0, 1
         ],
-        outputRange: ['rgba(186,218,238, 1)', 'rgba(140,194,227, 1)']
+        outputRange: ['#bbb', '#fff']
       });
 
     var text = this
@@ -100,21 +100,12 @@ class Circle extends Component {
         inputRange: [
           0, 1
         ],
-        outputRange: ['#b6bde1', '#62879e']
-      });
-
-    var text = this
-      .state
-      .scale
-      .interpolate({
-        inputRange: [
-          0, 1
-        ],
-        outputRange: ['#b6bde1', '#62879e']
+        outputRange: ['#000', '#fff']
       });
 
     return (
       <View style={styles.container}>
+
         <Animated.View
           style={{
           position: 'absolute',
@@ -131,9 +122,10 @@ class Circle extends Component {
         <Animated.Text
           style={{
           fontSize: 30,
+          top: 0,
           opacity: this.state.fade,
           fontFamily: 'Menlo',
-          color: text
+          color: 'black'
         }}>
           {v.text}
         </Animated.Text>
