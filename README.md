@@ -4,7 +4,7 @@
 
 # not any more
 
-![awesome](./screenshot.png)
+![gif](./inhale.gif)
 
 you can get it from the app store at [https://itunes.apple.com/us/app/be-awesome/id1387288406](https://itunes.apple.com/us/app/be-awesome/id1387288406) when it is approved
 

@@ -1,30 +1,152 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Animated,
+  TouchableOpacity,
+  Dimensions,
+  Easing
 } from 'react-native';
+const {width, height} = Dimensions.get('window');
+const size = Math.min(width, height) - 1;
+const duration = 4000;
+const keep_calm = [
+  {
+    text: 'inhale'
+  }, {
+    text: 'hold'
+  }, {
+    text: 'exhale'
+  }, {
+    text: 'wait'
+  }
+];
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+class Circle extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      scale: new Animated.Value(0),
+      fade: new Animated.Value(1),
+      iter: 0
+    };
+  }
+  animate() {
+    Animated.loop(Animated.sequence([
+      Animated.timing(this.state.scale, {
+        toValue: 1,
+        duration: duration
+      }),
+      Animated.timing(this.state.scale, {
+        toValue: 1,
+        duration: duration
+      }),
+      Animated.timing(this.state.scale, {
+        toValue: 0,
+        duration: duration
+      }),
+      Animated.timing(this.state.scale, {
+        toValue: 0,
+        duration: duration
+      })
+    ]), {}).start()
 
-type Props = {};
-export default class App extends Component<Props> {
+  }
+
+  componentDidMount() {
+    this.animate();
+    clearInterval(this.timer)
+    this.timer = setInterval(() => {
+      this.setState({
+        iter: this.state.iter + 1,
+        fade: new Animated.Value(0)
+      }, () => {
+        Animated.sequence([
+          Animated.timing(this.state.fade, {
+            toValue: 0,
+            duration: 100
+          }),
+          Animated.timing(this.state.fade, {
+            toValue: 1,
+            duration: 100
+          })
+        ]).start()
+      })
+
+    }, duration)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+
+  render() {
+    let v = keep_calm[this.state.iter % keep_calm.length];
+    const color = this
+      .state
+      .scale
+      .interpolate({
+        inputRange: [
+          0, 1
+        ],
+        outputRange: ['rgba(186,218,238, 1)', 'rgba(140,194,227, 1)']
+      });
+
+    var text = this
+      .state
+      .scale
+      .interpolate({
+        inputRange: [
+          0, 1
+        ],
+        outputRange: ['#b6bde1', '#62879e']
+      });
+
+    var text = this
+      .state
+      .scale
+      .interpolate({
+        inputRange: [
+          0, 1
+        ],
+        outputRange: ['#b6bde1', '#62879e']
+      });
+
+    return (
+      <View style={styles.container}>
+        <Animated.View
+          style={{
+          position: 'absolute',
+          backgroundColor: color,
+          width: size,
+          height: size,
+          borderRadius: size / 2,
+          transform: [
+            {
+              scale: this.state.scale
+            }
+          ]
+        }}></Animated.View>
+        <Animated.Text
+          style={{
+          fontSize: 30,
+          opacity: this.state.fade,
+          fontFamily: 'Menlo',
+          color: text
+        }}>
+          {v.text}
+        </Animated.Text>
+      </View>
+    );
+  }
+}
+
+class Awesome extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
+        <Text style={styles.title}>
           You are awesome!
         </Text>
         <Text style={styles.weather}>
@@ -35,8 +157,8 @@ export default class App extends Component<Props> {
         </Text>
         <Text style={styles.weather}>
           Go and have a great day!
-        </Text>        
-        
+        </Text>
+
       </View>
     );
   }
@@ -47,19 +169,48 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: '#ffffff'
   },
-  welcome: {
+
+  title: {
     fontSize: 40,
     fontFamily: "Menlo",
     textAlign: 'center',
-    margin: 40,
+    margin: 40
   },
-
   weather: {
     fontSize: 20,
     fontFamily: "Menlo",
     textAlign: 'center',
-    margin: 10,
-  },
-});
+    margin: 10
+  }
+})
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mode: 'awesome'
+    }
+  }
+
+  _onPress = () => {
+    this.setState({
+      mode: this.state.mode === 'awesome'
+        ? 'calm'
+        : 'awesome'
+    })
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity onPress={this._onPress}>
+          {this.state.mode === 'awesome'
+            ? <Awesome/>
+            : <Circle/>}
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
