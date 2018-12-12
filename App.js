@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Animated, TouchableOpacity, Dimensions, Easing } from 'react-native';
+import KeepAwake from 'react-native-keep-awake';
+
 const Sound = require('react-native-sound');
+
 Sound.setCategory('Playback');
 
 class Player extends Component {
@@ -43,6 +46,13 @@ class Player extends Component {
 		});
 	};
 
+	componentWillUnmount() {
+		let playing = this.state.playing;
+		if (playing) {
+			this.state.player.stop();
+			playing = false;
+		}
+	}
 	current = () => {
 		return this.state.playlist[this.state.index];
 	};
@@ -74,7 +84,7 @@ class Player extends Component {
 		return (
 			<View style={{ margin: 5, opacity: 0.5 }}>
 				<TouchableOpacity onPress={this._startStop} onLongPress={this._next}>
-					<Text>{this.state.playing ? '◼' : '▶'}</Text>
+					<Text style={{ fontSize: 20 }}>{this.state.playing ? '◼' : '▶'}</Text>
 				</TouchableOpacity>
 			</View>
 		);
@@ -239,6 +249,7 @@ class Circle extends Component {
 					{this.state.second}
 				</Animated.Text>
 				<Player />
+				<KeepAwake />
 			</View>
 		);
 	}

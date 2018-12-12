@@ -10,6 +10,7 @@
     "jest-serializer": "^23.0.1",
     "react": "16.6.1",
     "react-native": "0.57.7",
+    "react-native-keep-awake": "^4.0.0",
     "react-native-sound": "^0.10.9"
   },
   "devDependencies": {
