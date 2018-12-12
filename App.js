@@ -16,12 +16,15 @@ class Player extends Component {
 		this.state = {
 			playlist: playlist,
 			index: 0,
-			playing: true
+			playing: true,
+			hide: false
 		};
 	}
 
-	componentDidMount() {
+	componentWillMount() {
+		this._hide();
 		this.play();
+		console.log('aaa');
 	}
 
 	play = () => {
@@ -71,27 +74,38 @@ class Player extends Component {
 	_startStop = () => {
 		let playing = this.state.playing;
 		if (playing) {
-			this.state.player.stop();
 			playing = false;
 		} else {
 			this.play();
 			playing = true;
 		}
-		this.setState({ playing: playing });
+		this.setState({ playing: playing, hide: false });
+		this._hide();
 	};
 
+	componentDidMount() {}
+
+	_hide = () => {
+		clearInterval(this.timer);
+		this.setState({ hide: false });
+		this.timer = setTimeout(() => {
+			this.setState({ hide: true });
+		}, 2000);
+	};
 	render() {
 		return (
-			<View
+			<TouchableOpacity
 				style={{
-					opacity: 0.3,
-					padding: 5
+					opacity: 0.2,
+					padding: 20,
+					bottom: 20,
+					position: 'absolute'
 				}}
+				onPress={this._startStop}
+				onLongPress={this._next}
 			>
-				<TouchableOpacity onPress={this._startStop} onLongPress={this._next}>
-					<Text style={{ fontSize: 15 }}>{this.state.playing ? '◼' : '▶'}</Text>
-				</TouchableOpacity>
-			</View>
+				<Text style={{ fontSize: 30 }}>{this.state.hide ? ' ' : this.state.playing ? '◼' : '▶'}</Text>
+			</TouchableOpacity>
 		);
 	}
 }
