@@ -4,15 +4,14 @@
 
 # not any more
 
-has 4x4x4x4 breathin
+has 4x4x4x4 breathing
 
 inhale 4 seconds
 hold 4 seconds
 exhale 4 seconds
 wait 4 seconds
 
-![screenshot](./screenshot.png)
-![screenshot](./screenshot2.png)
+![screenshot](./screenshot.gif)
 
 you can get it from the app store at [https://itunes.apple.com/us/app/be-awesome/id1387288406](https://itunes.apple.com/us/app/be-awesome/id1387288406) when it is approved
 
