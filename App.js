@@ -82,9 +82,14 @@ class Player extends Component {
 
 	render() {
 		return (
-			<View style={{ margin: 5, opacity: 0.5 }}>
+			<View
+				style={{
+					opacity: 0.3,
+					padding: 5
+				}}
+			>
 				<TouchableOpacity onPress={this._startStop} onLongPress={this._next}>
-					<Text style={{ fontSize: 20 }}>{this.state.playing ? '◼' : '▶'}</Text>
+					<Text style={{ fontSize: 15 }}>{this.state.playing ? '◼' : '▶'}</Text>
 				</TouchableOpacity>
 			</View>
 		);
@@ -172,9 +177,6 @@ class Circle extends Component {
 					from = 0;
 					to = 0;
 				}
-
-				console.log(currentIteration, { from, to });
-
 				this.setState(
 					{
 						iter: iter,
@@ -204,7 +206,11 @@ class Circle extends Component {
 		let v = keep_calm[this.state.iter % keep_calm.length];
 		const color = this.state.scale.interpolate({
 			inputRange: [ 0, 1 ],
-			outputRange: [ '#bbb', '#fff' ]
+			outputRange: [ '#bbb', '#fdfdfd' ]
+		});
+		const scale = this.state.scale.interpolate({
+			inputRange: [ 0, 1 ],
+			outputRange: [ 0, 1.5 ]
 		});
 		const fadeSecond = this.state.fade.interpolate({
 			inputRange: [ 0, 1 ],
@@ -222,7 +228,7 @@ class Circle extends Component {
 						borderRadius: size / 2,
 						transform: [
 							{
-								scale: this.state.scale
+								scale: scale
 							}
 						]
 					}}
@@ -230,7 +236,7 @@ class Circle extends Component {
 				<Animated.Text
 					style={{
 						fontSize: 30,
-						top: 0,
+						padding: 5,
 						opacity: this.state.fade,
 						fontFamily: 'Menlo',
 						color: 'black'
@@ -240,8 +246,8 @@ class Circle extends Component {
 				</Animated.Text>
 				<Animated.Text
 					style={{
+						padding: 5,
 						fontSize: 20,
-						top: 0,
 						fontFamily: 'Menlo',
 						color: fadeSecond
 					}}
