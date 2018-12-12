@@ -24,7 +24,6 @@ class Player extends Component {
 	componentWillMount() {
 		this._hide();
 		this.play();
-		console.log('aaa');
 	}
 
 	play = () => {
