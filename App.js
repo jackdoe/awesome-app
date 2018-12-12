@@ -96,7 +96,7 @@ class Player extends Component {
 		return (
 			<TouchableOpacity
 				style={{
-					opacity: 0.2,
+					opacity: 0.6,
 					padding: 20,
 					bottom: 20,
 					position: 'absolute'
