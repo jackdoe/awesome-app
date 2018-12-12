@@ -43,7 +43,7 @@ class Circle extends Component {
 						}),
 						Animated.timing(this.state.fade, {
 							toValue: 0,
-							duration: duration - delta
+							duration: duration - delta * 2
 						})
 					])
 				]),
@@ -60,7 +60,7 @@ class Circle extends Component {
 						}),
 						Animated.timing(this.state.fade, {
 							toValue: 0,
-							duration: duration - delta
+							duration: duration - delta * 2
 						})
 					])
 				]),
@@ -77,7 +77,7 @@ class Circle extends Component {
 						}),
 						Animated.timing(this.state.fade, {
 							toValue: 0,
-							duration: duration - delta
+							duration: duration - delta * 2
 						})
 					])
 				]),
@@ -93,7 +93,7 @@ class Circle extends Component {
 						}),
 						Animated.timing(this.state.fade, {
 							toValue: 0,
-							duration: duration - delta
+							duration: duration - delta * 2
 						})
 					])
 				])
