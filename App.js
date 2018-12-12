@@ -7,8 +7,8 @@ class Player extends Component {
 	constructor(props) {
 		super(props);
 		let playlist = [
-			'Chris_Zabriskie_-_06_-_That_Kid_in_Fourth_Grade_Who_Really_Liked_the_Denver_Broncos.mp3',
-			'Kai_Engel_-_04_-_Moonlight_Reprise.mp3'
+			'Kai_Engel_-_04_-_Moonlight_Reprise.mp3',
+			'Chris_Zabriskie_-_06_-_That_Kid_in_Fourth_Grade_Who_Really_Liked_the_Denver_Broncos.mp3'
 		];
 		this.state = {
 			playlist: playlist,
@@ -20,6 +20,7 @@ class Player extends Component {
 	componentDidMount() {
 		this.play();
 	}
+
 	play = () => {
 		if (this.state.player) {
 			this.state.player.stop();
@@ -33,7 +34,6 @@ class Player extends Component {
 				return;
 			}
 			player.play();
-			player.setPan(1);
 			player.setNumberOfLoops(-1);
 			player.setVolume(1);
 		});
@@ -109,102 +109,77 @@ class Circle extends Component {
 			second: 4
 		};
 	}
-	animate() {
-		let delta = 100;
-		let a = Animated.loop(
-			Animated.sequence([
-				Animated.parallel([
-					Animated.timing(this.state.scale, {
-						toValue: 1,
-						duration: duration
-					}),
-					Animated.sequence([
-						Animated.timing(this.state.fade, {
-							toValue: 1,
-							duration: delta
-						}),
-						Animated.timing(this.state.fade, {
-							toValue: 0,
-							duration: duration - delta * 5
-						})
-					])
-				]),
-				Animated.parallel([
-					Animated.timing(this.state.scale, {
-						toValue: 1,
-						duration: duration
-					}),
-					Animated.sequence([
-						Animated.timing(this.state.fade, {
-							toValue: 1,
-							duration: delta
-						}),
-						Animated.timing(this.state.fade, {
-							toValue: 0,
-							duration: duration - delta * 5
-						})
-					])
-				]),
 
-				Animated.parallel([
-					Animated.timing(this.state.scale, {
-						toValue: 0,
-						duration: duration
-					}),
-					Animated.sequence([
-						Animated.timing(this.state.fade, {
-							toValue: 1,
-							duration: delta
-						}),
-						Animated.timing(this.state.fade, {
-							toValue: 0,
-							duration: duration - delta * 5
-						})
-					])
-				]),
-				Animated.parallel([
-					Animated.timing(this.state.scale, {
-						toValue: 0,
-						duration: duration
-					}),
-					Animated.sequence([
-						Animated.timing(this.state.fade, {
-							toValue: 1,
-							duration: delta
-						}),
-						Animated.timing(this.state.fade, {
-							toValue: 0,
-							duration: duration - delta * 5
-						})
-					])
-				])
-			]),
-			{}
-		);
+	animate(toValue) {
+		let delta = 100;
+		let a = Animated.parallel([
+			Animated.timing(this.state.scale, {
+				toValue: toValue,
+				duration: duration
+			}),
+			Animated.sequence([
+				Animated.timing(this.state.fade, {
+					toValue: 1,
+					duration: delta
+				}),
+				Animated.timing(this.state.fade, {
+					toValue: 0,
+					duration: duration - delta * 5
+				})
+			])
+		]);
+
 		return a;
 	}
 
 	componentDidMount() {
-		let a = this.animate();
+		let a = this.animate(1);
 		clearInterval(this.timer);
 		let seconds = duration / 1000;
 		let count = 1;
 		a.start();
+		let iter = 1;
+
 		this.timer = setInterval(() => {
-			if (count % seconds == 0) {
-				a.stop();
+			let s = count % seconds;
+			let currentSecond = 4 - count % seconds;
+			let currentIteration = iter % 4;
+
+			if (s == 0) {
+				let from = 0;
+				let to = 0;
+
+				if (currentIteration == 0) {
+					from = 0;
+					to = 1;
+				} else if (currentIteration == 1) {
+					from = 1;
+					to = 1;
+				} else if (currentIteration == 2) {
+					from = 1;
+					to = 0;
+				} else {
+					from = 0;
+					to = 0;
+				}
+
+				console.log(currentIteration, { from, to });
+
 				this.setState(
 					{
-						iter: this.state.iter + 1,
-						second: 4 - count % seconds
+						iter: iter,
+						second: currentSecond,
+						scale: new Animated.Value(from)
 					},
 					() => {
+						let a = this.animate(to);
 						a.start();
 					}
 				);
+				iter++;
 			} else {
 				this.setState({
-					second: 4 - count % seconds
+					second: currentSecond
 				});
 			}
 			count++;
