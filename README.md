@@ -11,7 +11,11 @@ hold 4 seconds
 exhale 4 seconds
 wait 4 seconds
 
-![screenshot](./screenshot.gif)
+![awesome](./readme/awesome.png)
+
+![breathe](./readme/breathe.png)
+
+![koans](./readme/koans.png)
 
 you can get it from the app store at [https://itunes.apple.com/us/app/be-awesome/id1387288406](https://itunes.apple.com/us/app/be-awesome/id1387288406) when it is approved
 
@@ -23,6 +27,3 @@ you can get it from the app store at [https://itunes.apple.com/us/app/be-awesome
 
 * music from https://freemusicarchive.org/genre/Ambient/?sort=track_interest http://freemusicarchive.org/music/Kai_Engel/ and http://freemusicarchive.org/music/Chris_Zabriskie/
 
-## todo
-
-* add dark theme to save battery
