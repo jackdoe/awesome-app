@@ -5,22 +5,15 @@ const Sound = require('react-native-sound');
 Sound.setCategory('Playback');
 
 export default class Player extends Component {
+
     constructor(props) {
-        super(props);
-        let playlist = [
-            'Kai_Engel_-_04_-_Moonlight_Reprise.mp3', 'Chris_Zabriskie_-_06_-_That_Kid_in_Fourth_Grade_Who_Really_Liked_the_Denver_Bron' +
-                    'cos.mp3'
-        ];
-
-        this.state = {
-            playlist: playlist,
-            index: 0,
-            playing: true
-        };
+        super(props)
+        this.state = {};
     }
-
     componentWillMount() {
-        this.play();
+        if (this.props.autoplay) {
+            this.play();
+        }
     }
 
     play = () => {
@@ -35,43 +28,37 @@ export default class Player extends Component {
                 .release();
         }
 
-        let url = this.state.playlist[this.state.index % this.state.playlist.length];
+        let url = this.props.audio;
         let player = new Sound(url, Sound.MAIN_BUNDLE, (error) => {
             if (error) {
                 console.log('failed to load the sound', error);
                 return;
             }
+
             player.play();
-            player.setNumberOfLoops(-1);
+            player.setNumberOfLoops(this.props.numberOfLoops);
             player.setVolume(1);
         });
 
-        this.setState({player: player});
-    };
+        this.setState({player: player, playing: true});
+    }
 
     componentWillUnmount() {
-        let playing = this.state.playing;
-        if (playing) {
-            this.stop();
-        }
+        this.stop();
     }
-    current = () => {
-        return this.state.playlist[this.state.index];
-    };
 
     stop = () => {
-        this
-            .state
-            .player
-            .stop();
+        if (this.state.player) {
+            this
+                .state
+                .player
+                .stop();
+            this
+                .state
+                .player
+                .release();
+        }
     }
-    _next = () => {
-        this.setState({
-            index: this.state.index + 1
-        }, () => {
-            this.play();
-        });
-    };
 
     _startStop = () => {
         let playing = this.state.playing;
@@ -86,14 +73,17 @@ export default class Player extends Component {
     };
 
     render() {
+        var button = this.state.playing
+            ? '.'
+            : '>';
+        var innerView = <Text style={this.props.buttonStyle}>{this.props.text || ''}{button}</Text>
+
         return (
             <TouchableOpacity
-                style={this.props.styles.player_container}
+                style={this.props.style}
                 onPress={this._startStop}
-                onLongPress={this._next}>
-                <Text style={this.props.styles.player_button}>{this.state.playing
-                        ? '◼'
-                        : '▶'}</Text>
+                onLongPress={this.props.onLongPress}>
+                {innerView}
             </TouchableOpacity>
         );
     }
