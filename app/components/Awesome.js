@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Text, View, SafeAreaView} from 'react-native';
+import {Text, Linking, View, SafeAreaView} from 'react-native';
+import Player from './Player';
 
 export default class Awesome extends Component {
     constructor(props) {
@@ -15,27 +16,23 @@ export default class Awesome extends Component {
                 <Text
                     style={[
                     this.state.style.large, {
-                        textAlign: 'center'
+                        textAlign: 'left'
                     }
-                ]}>You are awesome!</Text>
-                <Text
-                    style={[
-                    this.state.style.small, {
-                        textAlign: 'center'
-                    }
-                ]}>How are things going right now?</Text>
-                <Text
-                    style={[
-                    this.state.style.small, {
-                        textAlign: 'center'
-                    }
-                ]}>It doesnt fucking matter.</Text>
-                <Text
-                    style={[
-                    this.state.style.small, {
-                        textAlign: 'center'
-                    }
-                ]}>Go and have a great day!</Text>
+                ]}
+                    onPress={() => {
+                    Linking.openURL("https://en.wikipedia.org/wiki/Alan_Watts")
+                }}>And
+                    somehow we think we understand things when we have translated into terms of
+                    straight lines and squares. Maybe that’s why they call rather rigid people
+                    squares.. But it doesn’t fit nature.
+                </Text>
+                <Player
+                    autoplay={false}
+                    numberOfLoops={0}
+                    style={{}}
+                    buttonStyle={this.state.style.large}
+                    text="Alan Watts - Conversation With Myself"
+                    audio="conversation_with_myself.mp3"/>
             </SafeAreaView>
         );
     }

@@ -18,6 +18,7 @@
 		0437759121E0E8DB007B2D11 /* 01_Breathing_Meditation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0437759021E0E8DB007B2D11 /* 01_Breathing_Meditation.mp3 */; };
 		0437759321E0F6AC007B2D11 /* 02_Breath_Sound_Body_Meditation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0437759221E0F6AB007B2D11 /* 02_Breath_Sound_Body_Meditation.mp3 */; };
 		0437759521E0F6B1007B2D11 /* 03_Complete_Meditation_Instructions.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0437759421E0F6B1007B2D11 /* 03_Complete_Meditation_Instructions.mp3 */; };
+		043775CE21E137D1007B2D11 /* conversation_with_myself.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 043775A521E137D1007B2D11 /* conversation_with_myself.mp3 */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -360,6 +361,7 @@
 		0437759021E0E8DB007B2D11 /* 01_Breathing_Meditation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 01_Breathing_Meditation.mp3; path = ../assets/med/01_Breathing_Meditation.mp3; sourceTree = "<group>"; };
 		0437759221E0F6AB007B2D11 /* 02_Breath_Sound_Body_Meditation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 02_Breath_Sound_Body_Meditation.mp3; path = ../assets/med/02_Breath_Sound_Body_Meditation.mp3; sourceTree = "<group>"; };
 		0437759421E0F6B1007B2D11 /* 03_Complete_Meditation_Instructions.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 03_Complete_Meditation_Instructions.mp3; path = ../assets/med/03_Complete_Meditation_Instructions.mp3; sourceTree = "<group>"; };
+		043775A521E137D1007B2D11 /* conversation_with_myself.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = conversation_with_myself.mp3; path = ../assets/aw/conversation_with_myself.mp3; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -535,6 +537,7 @@
 				0437759421E0F6B1007B2D11 /* 03_Complete_Meditation_Instructions.mp3 */,
 				042CDE5E21E09A9C00869010 /* Chris_Zabriskie_-_06_-_That_Kid_in_Fourth_Grade_Who_Really_Liked_the_Denver_Broncos.mp3 */,
 				042CDE3621E09A9C00869010 /* Kai_Engel_-_04_-_Moonlight_Reprise.mp3 */,
+				043775A521E137D1007B2D11 /* conversation_with_myself.mp3 */,
 			);
 			name = sound;
 			sourceTree = "<group>";
@@ -1186,6 +1189,7 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				0437759121E0E8DB007B2D11 /* 01_Breathing_Meditation.mp3 in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				043775CE21E137D1007B2D11 /* conversation_with_myself.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

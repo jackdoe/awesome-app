@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 var font_size_base = 20;
 var dark = {
-    PRIMARY_COLOR: '#c9c9c9',
+    PRIMARY_COLOR: '#fcfcfc',
     FONT_SIZE_SMALL: font_size_base - 4,
     FONT_SIZE_MEDIUM: font_size_base,
     FONT_SIZE_LARGE: font_size_base + 4,
