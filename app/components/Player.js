@@ -5,7 +5,6 @@ const Sound = require('react-native-sound');
 Sound.setCategory('Playback');
 
 export default class Player extends Component {
-
     constructor(props) {
         super(props)
         this.state = {};
